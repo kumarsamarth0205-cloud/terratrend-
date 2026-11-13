@@ -1,0 +1,26 @@
+# Environment & Cache
+.env
+.matplotlib_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test & Build
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+
+.git_backup/
