@@ -91,14 +91,20 @@ def create_app() -> FastAPI:
     app.include_router(bridge_router, prefix="/api")
     app.include_router(bridge_router, prefix="/api/v1")
 
+    # Global Health Check Endpoints
+    @app.get("/health", include_in_schema=False)
+    @app.get("/api/health", include_in_schema=False)
+    async def global_health():
+        return {"status": "ok", "service": "terratrend"}
+
     # 2. Serve TerraTrend Frontend static assets & pages
     frontend_candidates = [
         os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend")),
         os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend")),
         os.path.abspath(os.path.join(os.getcwd(), "frontend"))
     ]
-    frontend_dir = next((d for d in frontend_candidates if os.path.isdir(d)), None)
-    if os.path.exists(frontend_dir):
+    frontend_dir = next((d for d in frontend_candidates if d and os.path.isdir(d)), None)
+    if frontend_dir and os.path.exists(frontend_dir):
         # Mount assets directories
         for folder in ["css", "js"]:
             sub_path = os.path.join(frontend_dir, folder)
