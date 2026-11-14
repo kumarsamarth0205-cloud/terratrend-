@@ -39,16 +39,36 @@ document.addEventListener('DOMContentLoaded', async function () {
       center: [20, 10],
       zoom: 2.5,
       minZoom: 2,
-      maxZoom: 10,
+      maxZoom: 16,
       worldCopyJump: true
     });
 
-    // Dark-styled NASA Earth observation basemap
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; NASA Earthdata',
-      subdomains: 'abcd',
+    // 100% Free Public Basemaps (Zero API Key Required)
+    const darkCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri &mdash; NASA Earth Observations',
+      maxZoom: 16
+    });
+
+    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri World Imagery &mdash; NASA / USGS',
+      maxZoom: 18
+    });
+
+    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
-    }).addTo(leafletMap);
+    });
+
+    // Default to Dark Canvas for high-contrast environmental trend visualization
+    darkCanvas.addTo(leafletMap);
+
+    // Multi-layer switcher: Dark Canvas, Satellite, OpenStreetMap
+    const baseMaps = {
+      "Dark Canvas": darkCanvas,
+      "NASA Satellite": satellite,
+      "OpenStreetMap": osm
+    };
+    L.control.layers(baseMaps, null, { position: 'topright' }).addTo(leafletMap);
 
     markersLayer = L.layerGroup().addTo(leafletMap);
   }

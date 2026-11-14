@@ -103,7 +103,7 @@ const TerraComponents = (function () {
             <span class="tt-pulse-dot"></span>
             <div class="tt-mode-info">
               <span class="tt-mode-title">${TerraAPI.getApiBaseUrl() ? "LIVE BACKEND API" : "DEMO DATA MODE"}</span>
-              <span class="tt-mode-subtitle">${TerraAPI.getApiBaseUrl() ? "Connected: :8000" : "NASA Mock Synthetic"}</span>
+              <span class="tt-mode-subtitle">${TerraAPI.getApiBaseUrl() ? "NASA POWER Live" : "NASA Mock Synthetic"}</span>
             </div>
             <i data-lucide="settings-2" class="tt-mode-icon"></i>
           </div>

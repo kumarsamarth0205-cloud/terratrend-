@@ -7,7 +7,11 @@ const TerraAPI = (function () {
   'use strict';
 
   // Configurable Backend URL (defaults to connected local backend)
-  let API_BASE_URL = window.TERRA_API_BASE_URL || localStorage.getItem('tt_api_base_url') || 'http://localhost:8000/api';
+  // Auto-detect production vs local environment (no hardcoded localhost)
+  let defaultBase = (typeof window !== 'undefined' && window.location && window.location.origin && !window.location.origin.includes('localhost') && !window.location.origin.includes('127.0.0.1'))
+    ? (window.location.origin + '/api')
+    : 'http://localhost:8000/api';
+  let API_BASE_URL = window.TERRA_API_BASE_URL || localStorage.getItem('tt_api_base_url') || defaultBase;
 
   // Mode tracking
   let isUsingMock = true;
