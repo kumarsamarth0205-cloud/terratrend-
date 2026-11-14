@@ -4,8 +4,18 @@ Run locally:   uvicorn app.main:app --reload
 Railway start: uvicorn app.main:app --host 0.0.0.0 --port $PORT
 Interactive docs (Swagger): /docs      OpenAPI JSON: /openapi.json
 """
-import logging
 import os
+import sys
+
+# Ensure backend, root, and trend-detective are in sys.path from any working directory
+_backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_project_dir = os.path.dirname(_backend_dir)
+_td_dir = os.path.join(_project_dir, "trend-detective")
+for _p in [_backend_dir, _project_dir, _td_dir]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
+import logging
 import uuid
 from contextlib import asynccontextmanager
 
