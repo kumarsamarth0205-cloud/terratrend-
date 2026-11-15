@@ -1,58 +1,47 @@
 /* ==========================================================================
    TerraTrend – Earth Systems Trend Detective
-   responsive.css - Comprehensive Multi-Device Media Queries & Mobile Adaptation
-   Breakpoints:
-     1. Ultra-Wide & 4K Displays: min-width: 1441px
-     2. Standard Desktops & Laptops: max-width: 1200px
-     3. Tablets in Landscape: max-width: 1024px
-     4. Tablets in Portrait & Large Phones: max-width: 768px
-     5. Mobile Phones: max-width: 576px
-     6. Small-Screen Phones: max-width: 400px
-     7. Touch Device Optimization: (hover: none) and (pointer: coarse)
-     8. High-Contrast Print Mode: print
+   responsive.css - Comprehensive Multi-Device Media Queries & Adaptive UI/UX
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Ultra-Wide & High-DPI Displays (>= 1441px)
+   1. Ultra-Wide & 2K/4K Displays (>= 1441px)
    -------------------------------------------------------------------------- */
 @media screen and (min-width: 1441px) {
-  .tt-content-area {
-    max-width: 1720px;
-    padding: 2.5rem 3rem;
+  .tt-landing-container,
+  .tt-app-layout {
+    max-width: 1560px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .tt-stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+  .tt-hero-title {
+    font-size: 3.85rem;
   }
 
-  .tt-results-canvas-box {
-    height: 480px;
+  .tt-hero-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4.5rem;
   }
 
-  .tt-verdict-rate-val {
-    font-size: 2.25rem;
+  .tt-earth-card {
+    max-width: 520px;
+  }
+
+  .tt-earth-visual-sphere {
+    height: 330px;
   }
 }
 
 /* --------------------------------------------------------------------------
-   2. Desktop & Standard Laptops (<= 1200px)
+   2. Small Desktops & Landscape Tablets (1025px - 1200px)
    -------------------------------------------------------------------------- */
 @media screen and (max-width: 1200px) {
   .tt-hero-title {
     font-size: 2.75rem;
   }
 
-  .tt-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-
-  .tt-stats-scorecard-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
-
+  .tt-stats-grid,
+  .tt-stats-scorecard-grid,
   .tt-steps-grid,
   .tt-featured-vars-grid,
   .tt-demos-grid,
@@ -76,71 +65,16 @@
     gap: 1.5rem;
   }
 
-  .tt-compare-selectors-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   3. Tablets in Landscape (<= 1024px)
-   -------------------------------------------------------------------------- */
-@media screen and (max-width: 1024px) {
-  .tt-content-area {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .tt-topbar {
-    padding: 0 1.25rem;
-  }
-
-  .tt-topbar-center {
-    max-width: 320px;
-  }
-
-  .tt-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .tt-hero-visual {
-    order: -1;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .tt-map-page-layout {
-    height: auto;
-    min-height: 600px;
-  }
-
-  .tt-map-viewport {
-    height: 520px;
-  }
-
-  .tt-interpretations-row {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .tt-results-topbar {
-    padding: 1.25rem;
-  }
-
-  .tt-results-canvas-box {
-    height: 360px;
-  }
-
-  .tt-footer-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .tt-about-grid {
+    grid-template-columns: 1.8fr 1.2fr;
     gap: 2rem;
   }
 }
 
 /* --------------------------------------------------------------------------
-   4. Tablets in Portrait & Large Phones (<= 768px)
+   3. Medium Tablets & Small Laptops (769px - 1024px)
    -------------------------------------------------------------------------- */
-@media screen and (max-width: 768px) {
-  /* Layout: Convert Sidebar into Off-Canvas Slide Drawer */
+@media screen and (max-width: 1024px) {
   .tt-main-wrapper {
     margin-left: 0 !important;
     width: 100% !important;
@@ -153,9 +87,9 @@
     bottom: 0;
     width: 290px !important;
     transform: translateX(-100%);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-    z-index: 1000 !important;
-    transition: transform var(--transition-normal);
+    width: 280px !important;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
   }
 
   .tt-sidebar.mobile-open {
@@ -165,14 +99,10 @@
   .tt-sidebar-backdrop {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(4, 7, 13, 0.8);
-    backdrop-filter: blur(6px);
-    z-index: 995;
-    animation: fadeIn 0.2s ease forwards;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 95;
   }
 
   .tt-sidebar-backdrop.visible {
@@ -184,100 +114,146 @@
     display: flex !important;
   }
 
-  /* Topbar Adjustments */
-  .tt-topbar {
-    padding: 0 1rem;
-    height: 64px;
+  .tt-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .tt-hero-visual {
+    order: -1;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
   .tt-topbar-center {
     display: none; /* Accessible in drawer navigation */
   }
 
-  .tt-user-role {
-    display: none;
+  .tt-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
   }
 
   .tt-topbar-badge-demo {
     display: none;
   }
 
+  .tt-about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .tt-toc-sticky {
+    position: static;
+    max-height: none;
+    margin-bottom: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Portrait Tablets & Phablets (577px - 768px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  /* Navigation & Headers */
+  .tt-landing-nav {
+    height: 70px;
+  }
+
+  .tt-landing-links {
+    display: none !important;
+  }
+
+  .tt-landing-nav-actions .tt-btn {
+    display: none;
+  }
+
+  .tt-landing-mobile-toggle {
+    display: flex !important;
+  }
+
   .tt-content-area {
     padding: 1.25rem 1rem;
   }
 
+  .tt-topbar {
+    padding: 0 1rem;
+    height: 64px;
+  }
+
+  .tt-topbar-center,
+  .tt-topbar-cta {
+    display: none;
+  }
+
   /* Hero Section */
   .tt-hero-section {
-    padding-top: 84px;
+    padding-top: 90px;
     padding-bottom: 40px;
     min-height: auto;
   }
 
   .tt-hero-title {
-    font-size: 2.15rem;
-    line-height: 1.2;
+    font-size: 2.35rem;
+    line-height: 1.15;
   }
 
   .tt-hero-subtitle {
-    font-size: 0.95rem;
+    font-size: 1.02rem;
+    margin-bottom: 1.75rem;
   }
 
-  .tt-hero-stats-row {
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .tt-landing-links {
-    display: none;
-  }
-
-  /* Stepper Wizard Bar */
-  .tt-stepper-bar {
+  .tt-hero-cta-group {
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
-    padding: 1rem 1.25rem;
+  }
+
+  .tt-hero-cta-group .tt-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tt-hero-stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  /* Grids & Cards */
+  .tt-problem-grid,
+  .tt-steps-grid,
+  .tt-featured-vars-grid,
+  .tt-demos-grid,
+  .tt-sources-grid,
+  .tt-stats-grid,
+  .tt-stats-scorecard-grid,
+  .tt-dash-vars-grid,
+  .tt-variables-catalog-grid,
+  .tt-demos-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Stepper Bar & Inputs */
+  .tt-stepper-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
   }
 
   .tt-stepper-divider {
     display: none;
   }
 
-  .tt-stepper-item {
-    padding: 0.35rem 0;
-  }
-
-  /* Presets Bar */
-  .tt-presets-bar {
-    padding: 0.75rem 1rem;
-    gap: 0.5rem;
-  }
-
-  .tt-presets-label {
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-
-  .tt-preset-case-btn {
-    font-size: 0.78rem;
-    padding: 0.4rem 0.75rem;
-    flex-grow: 1;
-    justify-content: center;
-  }
-
-  /* Chart & Visualizations */
-  .tt-results-chart-card {
-    padding: 1.25rem;
-  }
-
-  .tt-results-canvas-box {
-    height: 290px;
-  }
-
-  .tt-chart-legends-bar {
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    font-size: 0.75rem;
+  .tt-coords-row,
+  .tt-time-row,
+  .tt-source-selector-grid,
+  .tt-settings-grid,
+  .tt-compare-selectors-grid {
+    grid-template-columns: 1fr;
   }
 
   .tt-view-modes-group {
@@ -294,167 +270,34 @@
     text-align: center;
   }
 
-  /* Verdict / Status Banner */
+  /* Verdict & Analysis Results */
   .tt-verdict-banner {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
-    padding: 1.25rem 1.5rem;
-  }
-
-  .tt-verdict-left {
-    gap: 1rem;
-  }
-
-  .tt-verdict-icon {
-    width: 46px;
-    height: 46px;
-  }
-
-  .tt-verdict-text h2 {
-    font-size: 1.25rem;
+    padding: 1.25rem;
   }
 
   .tt-verdict-rate-badge {
     text-align: left;
     width: 100%;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .tt-verdict-rate-val {
-    font-size: 1.6rem;
+  .tt-results-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
   }
 
-  /* Scorecards & Metadata */
-  .tt-stats-scorecard-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .tt-metadata-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .tt-meta-col p {
-    font-size: 0.8rem;
-  }
-
-  /* Modal Cards Responsive */
-  .tt-modal-overlay {
-    padding: 1rem;
-  }
-
-  .tt-modal-card {
-    width: 100% !important;
-    max-height: 86vh;
-    border-radius: var(--radius-lg);
-  }
-
-  .tt-modal-header {
-    padding: 1rem 1.25rem;
-  }
-
-  .tt-modal-body {
-    padding: 1rem 1.25rem;
-  }
-
-  .tt-modal-footer {
-    padding: 1rem 1.25rem;
-    flex-direction: column-reverse;
-    gap: 0.5rem;
-  }
-
-  .tt-modal-footer .tt-btn {
+  .tt-results-header-actions .tt-btn {
     width: 100%;
     justify-content: center;
   }
 
-  /* Map Controls */
-  .tt-map-controls-card {
-    padding: 0.85rem 1rem;
-  }
-
-  .tt-map-filters-group {
-    width: 100%;
-  }
-
-  .tt-map-filter-item {
-    flex: 1 1 140px;
-  }
-
-  .tt-map-select {
-    width: 100%;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   5. Mobile Phones (<= 576px)
-   -------------------------------------------------------------------------- */
-@media screen and (max-width: 576px) {
-  html {
-    font-size: 15px;
-  }
-
-  .tt-content-area {
-    padding: 1rem 0.75rem;
-  }
-
-  .tt-topbar {
-    padding: 0 0.75rem;
-  }
-
-  .tt-page-title {
-    font-size: 1.15rem;
-  }
-
-  .tt-page-subtitle {
-    font-size: 0.72rem;
-  }
-
-  /* Dashboard Welcome Box */
-  .tt-dash-welcome {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.25rem 1rem;
-    gap: 1rem;
-  }
-
-  .tt-dash-welcome-text h2 {
-    font-size: 1.35rem;
-  }
-
-  .tt-dash-welcome-text p {
-    font-size: 0.85rem;
-  }
-
-  .tt-dash-welcome-actions {
-    width: 100%;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .tt-dash-welcome-actions .tt-btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Scorecards & Stat Cards to Single Column */
-  .tt-stats-grid,
-  .tt-stats-scorecard-grid,
-  .tt-metadata-grid,
-  .tt-dash-vars-grid {
+  /* Footer */
+  .tt-footer-grid {
     grid-template-columns: 1fr;
-    gap: 0.85rem;
-  }
-
-  .tt-stat-card {
-    padding: 1rem;
-  }
-
-  .tt-stat-value {
-    font-size: 1.5rem;
+    gap: 2rem;
   }
 
   .tt-scorecard-val {
@@ -484,186 +327,351 @@
     justify-content: center;
   }
 
-  /* Form Elements */
-  .tt-form-group label {
-    font-size: 0.82rem;
-  }
-
-  .tt-input, .tt-select {
-    font-size: 1rem; /* Prevent iOS safari auto-zoom on focus */
-    padding: 0.65rem 0.8rem;
-  }
-
-  .tt-coords-row,
-  .tt-time-row,
-  .tt-source-selector-grid,
-  .tt-settings-grid,
-  .tt-compare-selectors-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  /* Landing Hero */
-  .tt-hero-title {
-    font-size: 1.85rem;
-  }
-
-  .tt-hero-actions {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.75rem;
-  }
-
-  .tt-hero-actions .tt-btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .tt-problem-grid,
-  .tt-steps-grid,
-  .tt-featured-vars-grid,
-  .tt-demos-grid,
-  .tt-sources-grid,
-  .tt-footer-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  /* Toast Messages Centered on Mobile */
-  .tt-toast-container {
-    left: 0.75rem;
-    right: 0.75rem;
-    bottom: 1rem;
-    align-items: center;
-  }
-
-  .tt-toast {
-    min-width: auto;
-    width: 100%;
-    max-width: 100%;
-    font-size: 0.8rem;
-  }
-
-  /* Dropdown Panel in Topbar */
-  .tt-dropdown-panel {
-    width: calc(100vw - 1.5rem);
-    right: -10px;
+  /* Modals */
+  .tt-modal-dialog {
+    width: 95% !important;
+    max-height: 90vh !important;
+    margin: 1rem auto;
+    padding: 1.25rem !important;
   }
 }
 
 /* --------------------------------------------------------------------------
-   6. Extra-Small Mobile Devices (<= 400px)
+   5. Standard Mobile Phones (381px - 576px)
    -------------------------------------------------------------------------- */
-@media screen and (max-width: 400px) {
-  html {
-    font-size: 14px;
+@media screen and (max-width: 576px) {
+  .tt-landing-container {
+    padding: 0 1rem;
   }
 
-  .tt-content-area {
-    padding: 0.75rem 0.5rem;
+  .tt-hero-title {
+    font-size: 1.95rem;
+    letter-spacing: -0.02em;
   }
 
+  .tt-hero-badge {
+    font-size: 0.74rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .tt-hero-stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .tt-hero-stat-value {
+    font-size: 1.35rem;
+  }
+
+  .tt-hero-stat-label {
+    font-size: 0.74rem;
+  }
+
+  /* Earth Telemetry Card Adaptation */
+  .tt-earth-card {
+    padding: 1.15rem;
+    max-width: 100%;
+  }
+
+  .tt-earth-visual-sphere {
+    height: 250px;
+    margin-bottom: 1rem;
+  }
+
+  .tt-earth-modes-bar {
+    gap: 0.25rem;
+    padding: 0.2rem;
+  }
+
+  .tt-earth-mode-btn {
+    font-size: 0.68rem;
+    padding: 0.35rem 0.4rem;
+    gap: 0.25rem;
+  }
+
+  .tt-earth-mode-btn span {
+    display: inline-block;
+  }
+
+  .tt-earth-controls-overlay {
+    bottom: 8px;
+    left: 8px;
+    gap: 0.25rem;
+  }
+
+  .tt-earth-ctrl-btn {
+    padding: 0.22rem 0.45rem;
+    font-size: 0.64rem;
+  }
+
+  .tt-earth-drag-hint {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.45rem;
+    top: 8px;
+    right: 8px;
+  }
+
+  .tt-hero-live-scan {
+    padding: 0.75rem;
+  }
+
+  .tt-scan-title {
+    font-size: 0.7rem;
+  }
+
+  .tt-scan-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  /* Filter Toolbars */
+  .tt-filter-toolbar {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tt-filter-search-box {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .tt-category-pills-bar {
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tt-category-filter-btn {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    padding: 0.4rem 0.85rem;
+  }
+
+  /* Map Container */
+  .tt-map-container,
+  #tt-leaflet-map,
+  #tt-global-map {
+    height: 380px !important;
+  }
+
+  /* Metric Card & Charts */
+  .tt-chart-card {
+    padding: 1rem;
+  }
+
+  .tt-chart-viewport {
+    height: 280px !important;
+  }
+
+  .tt-method-block {
+    padding: 1.35rem 1rem;
+  }
+
+  .tt-formula-card {
+    padding: 0.85rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Ultra-Compact Mobile Screens (<= 380px, e.g. iPhone SE, Flip screens)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 380px) {
   .tt-brand-title {
     font-size: 1rem;
   }
 
-  .tt-brand-logo {
-    width: 34px;
-    height: 34px;
+  .tt-brand-subtitle {
+    display: none;
   }
 
   .tt-hero-title {
     font-size: 1.65rem;
   }
 
-  .tt-verdict-rate-val {
-    font-size: 1.35rem;
+  .tt-hero-subtitle {
+    font-size: 0.9rem;
   }
 
-  .tt-card {
-    padding: 1rem;
+  .tt-earth-visual-sphere {
+    height: 220px;
   }
 
-  .tt-btn {
-    padding: 0.55rem 0.85rem;
-    font-size: 0.82rem;
+  .tt-earth-modes-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tt-earth-mode-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tt-hero-stats-row {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .tt-metadata-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tt-content-area {
+    padding: 1rem 0.65rem;
   }
 }
 
 /* --------------------------------------------------------------------------
-   7. Touch Devices Optimization ((hover: none) and (pointer: coarse))
+   7. Touch-First Device Optimizations
    -------------------------------------------------------------------------- */
 @media (hover: none) and (pointer: coarse) {
-  /* Minimum comfortable tap targets for touch accessibility */
+  /* Increase tap target sizes to minimum 44x44px for accessibility */
   .tt-btn,
   .tt-nav-link,
-  .tt-input,
-  .tt-select,
-  .tt-preset-case-btn,
-  .tt-view-mode-btn,
-  .tt-icon-btn {
-    min-height: 42px;
+  .tt-category-filter-btn,
+  .tt-landing-mobile-link {
+    min-height: 44px;
   }
 
-  /* Prevent persistent hover styles on touched elements */
-  .tt-card:hover {
+  /* Prevent sticky hover states on mobile touch */
+  .tt-card:hover,
+  .tt-demo-card:hover,
+  .tt-var-card-preview:hover,
+  .tt-problem-card:hover {
     transform: none;
   }
 
-  .tt-stat-card:hover {
-    transform: none;
-  }
-
-  .tt-preset-case-btn:hover {
-    transform: none;
+  /* Smooth momentum scrolling */
+  .tt-landing-mobile-drawer,
+  .tt-sidebar-nav,
+  .tt-modal-body,
+  .tt-table-responsive {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
 /* --------------------------------------------------------------------------
-   8. Print Media Optimizations
+   8. Reduced Motion Accessibility Mode
    -------------------------------------------------------------------------- */
-@media print {
-  body {
-    background: #FFFFFF !important;
-    color: #0F172A !important;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
+  .tt-pulse-dot,
+  .tt-sat-ping,
+  .tt-hero-glow-orb {
+    animation: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Clean Print Media (Reports & Investigation Export)
+   -------------------------------------------------------------------------- */
+@media print {
+  .tt-landing-nav,
   .tt-sidebar,
   .tt-topbar,
-  .tt-sidebar-backdrop,
-  .tt-results-actions,
-  .tt-view-modes-group,
-  .tt-presets-bar,
+  .tt-hero-visual,
+  .tt-landing-mobile-drawer,
+  .tt-landing-drawer-backdrop,
   .tt-btn,
-  .tt-toast-container {
+  .tt-footer {
     display: none !important;
   }
 
-  .tt-main-wrapper {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  .tt-main-wrapper,
+  .tt-content-area {
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  .tt-content-area {
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-
   .tt-card,
-  .tt-results-chart-card,
-  .tt-verdict-banner,
-  .tt-scorecard-item,
-  .tt-interp-card,
-  .tt-metadata-card {
+  .tt-method-block,
+  .tt-formula-card {
+    border: 1px solid #CCCCCC !important;
     background: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
-    color: #0F172A !important;
     box-shadow: none !important;
+    color: #000000 !important;
     page-break-inside: avoid;
   }
 
-  .tt-scorecard-val,
-  .tt-verdict-rate-val {
-    color: #0F172A !important;
+  h1, h2, h3, h4, p, span, strong {
+    color: #000000 !important;
+  }
+}
+
+/* Mobile drawer & backdrop for index.html */
+@media screen and (max-width: 768px) {
+  .tt-landing-mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(85vw, 320px);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 110;
+    overflow-y: auto;
+  }
+
+  .tt-landing-mobile-drawer.open,
+  .tt-landing-mobile-drawer.mobile-open {
+    transform: translateX(0);
+  }
+
+  .tt-landing-drawer-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 105;
+  }
+
+  .tt-landing-drawer-backdrop.visible,
+  .tt-landing-drawer-backdrop.open {
+    display: block;
+  }
+
+  .tt-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .tt-section {
+    padding: 3rem 0;
+  }
+
+  .tt-section-title {
+    font-size: 1.65rem;
+  }
+
+  .tt-demo-chart-box {
+    height: 180px;
+  }
+
+  .tt-cta-box {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .tt-cta-title {
+    font-size: 1.45rem;
   }
 }
